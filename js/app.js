@@ -26,18 +26,21 @@ document.getElementById('generate-pin').addEventListener('click', function(){
 
 document.getElementById('calculator').addEventListener('click', function(event){
     const number = event.target.innerText;
+    const typedNumberField = document.getElementById('typed-numbers');
+    const previousTypedNumber = typedNumberField.value;
     if(isNaN(number)){
-        if(number === 'c'){
-             typedNumberField.value = '';
+        if(number === 'C'){
+            typedNumberField.value = '';
         }
-        else if(number === '<'){
-            console.log(pre)
+        else if (number === '<'){
+            const digits = previousTypedNumber.split('');
+            digits.pop();
+            const remainingDigits = digits.join('');
+            typedNumberField.value = remainingDigits;
         }
     }
-   else{
-       const typedNumberField = document.getElementById('typed-numbers');
-       const previousTypeNumber =  typedNumberField.value;
-       const newTypedNumber = previousTypeNumber + number;
-       typedNumberField.value = newTypedNumber;
-   }
+    else{
+        const newTypedNumber = previousTypedNumber + number;
+        typedNumberField.value = newTypedNumber;
+    }
 })
